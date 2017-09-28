@@ -1,4 +1,4 @@
-const getFormFields = require('../../lib/get-form-fields')
+const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 
@@ -34,6 +34,7 @@ const onSignOut = function (event) {
   api.signOut()
     .then(ui.signOutSuccess)
     .catch(ui.signInFailure)
+  // add code to go back to start page somehow...
 }
 
 // put all events in this function only, this is exported

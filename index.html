@@ -25,35 +25,7 @@
       <h1>Welcome to the classic game of</h1>
       <h1>TIC TAC TOE</h1>
 
-      <!-- tic tac toe board -->
-      <table>
-        <tr>
-          <td class="cell" id="0"></td>
-          <td class="cell" id="1"></td>
-          <td class="cell" id="2"></td>
-        </tr>
-        <tr>
-          <td class="cell" id="3"></td>
-          <td class="cell" id="4"></td>
-          <td class="cell" id="5"></td>
-        </tr>
-        <tr>
-          <td class="cell" id="6"></td>
-          <td class="cell" id="7"></td>
-          <td class="cell" id="8"></td>
-        </tr>
-      </table>
-      <br>
-      <!-- text that a someone won1 -->
-      <div class="endgame">
-        <div class="text"></div>
-      </div>
-
-      <!-- button to restart game -->
-      <button onClick="startGame()">Play Again</button>
-      <br>
-
-      <!--- sign up -->
+      <!-- sign up -->
       <form id="sign-up">
         <fieldset>
           <input name="credentials[email]" type="text" placeholder="Enter email">
@@ -74,7 +46,8 @@
 
       <!-- these fields needs to be hidden until I'm signed in -->
       <!-- change pwd -->
-      <form id="change-pwd">
+      <div class="sign-in-fields">
+        <form id="change-pwd">
         <fieldset>
           <input name="passwords[old]" type="password" placeholder="Enter old password">
           <input name="passwords[new]" type="password" placeholder="Enter new password">
@@ -88,6 +61,38 @@
           <input type="submit" name="submit" value='Sign out'>
         </fieldset>
       </form>
+    </div>
+      <!-- tic tac toe board -->
+      <div class="game-table">
+        <table>
+        <tr>
+          <td class="cell" id="0"></td>
+          <td class="cell" id="1"></td>
+          <td class="cell" id="2"></td>
+        </tr>
+        <tr>
+          <td class="cell" id="3"></td>
+          <td class="cell" id="4"></td>
+          <td class="cell" id="5"></td>
+        </tr>
+        <tr>
+          <td class="cell" id="6"></td>
+          <td class="cell" id="7"></td>
+          <td class="cell" id="8"></td>
+        </tr>
+      </table>
+      <br>
+
+      <!-- text that someone won -->
+      <div class="endgame">
+        <div class="text"></div>
+      </div>
+
+      <!-- button to restart game -->
+      <button onClick="startGame()">Play Again</button>
+      <br>
+    </div>
+
 
       <!-- <div class="button-function">
         <button type="button" class="sign-in-btn btn-light btn-lg" data-toggle="modal" data-target="#signIn-modal">
