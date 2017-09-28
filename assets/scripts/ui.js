@@ -26,9 +26,22 @@ const signInFailure = function (error) {
 //  $('#user-message').text('There was an error signing in, please try again')
 }
 
+const signOutSuccess = function () {
+  console.log('Signed out successfully')
+  $('#message').text('Signed out successfully')
+  store.user = null // setting this to null to clear out our user data
+}
+
+const signOutFailure = function (error) {
+  console.error(error)
+  $('#message').text('Something is wrong')
+}
+
 module.exports = {
   signUpSuccess,
   signUpFailure,
   signInSuccess,
-  signInFailure
+  signInFailure,
+  signOutSuccess,
+  signOutFailure
 }
