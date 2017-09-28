@@ -53,13 +53,22 @@
       <button onClick="startGame()">Play Again</button>
       <br>
 
-      <!--- sign up info -->
+      <!--- sign up -->
       <form id="sign-up">
         <fieldset>
           <input name="credentials[email]" type="text" placeholder="Enter email">
           <input name="credentials[password]" type="password" placeholder="Enter password">
           <input name="credentials[password_confirmation]" type="password" placeholder="Enter password again">
           <input type="submit" name="submit" value="Sign up!">
+        </fieldset>
+      </form>
+
+      <!--- sign in -->
+      <form id="sign-in">
+        <fieldset>
+          <input name="credentials[email]" type="text" placeholder="Enter email">
+          <input name="credentials[password]" type="password" placeholder="Enter password">
+          <input type="submit" name="submit" value="Sign in">
         </fieldset>
       </form>
 

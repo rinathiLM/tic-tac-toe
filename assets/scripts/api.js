@@ -10,13 +10,13 @@ const signUp = function (data) {
   })
 }
 
-// const signIn = function (data) {
-//   return $.ajax({
-//     url: config.apiOrigin + '/sign-in',
-//     method: 'POST',
-//     data
-//   })
-// }
+const signIn = function (data) {
+  return $.ajax({
+    url: config.apiOrigin + '/sign-in',
+    method: 'POST',
+    data
+  })
+}
 
 // const store = require('../store')
 // const signOut = function () {
@@ -40,5 +40,6 @@ const signUp = function (data) {
 // }
 
 module.exports = {
-  signUp
+  signUp,
+  signIn
 }

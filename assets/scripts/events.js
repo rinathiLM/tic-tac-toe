@@ -11,8 +11,19 @@ const onSignUp = function (event) {
     .catch(ui.signUpFailure)
 }
 
+const onSignIn = function (event) {
+  const data = getFormFields(this)
+  event.preventDefault()
+  console.log('data is ', data)
+  api.signIn(data)
+    .then(ui.signInSuccess)
+    .catch(ui.signInFailure)
+}
+
+// put all events in this function only, this is exported
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
+  $('#sign-in').on('submit', onSignIn)
 }
 
 module.exports = {
