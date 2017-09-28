@@ -72,12 +72,23 @@
         </fieldset>
       </form>
 
-      <!--- sign in -->
+      <!-- these fields needs to be hidden until I'm signed in -->
+      <!-- change pwd -->
+      <form id="change-pwd">
+        <fieldset>
+          <input name="passwords[old]" type="password" placeholder="Enter old password">
+          <input name="passwords[new]" type="password" placeholder="Enter new password">
+          <input type="submit" name="submit" value='Change password'>
+        </fieldset>
+      </form>
+
+      <!--- sign out -->
       <form id="sign-out">
         <fieldset>
           <input type="submit" name="submit" value='Sign out'>
         </fieldset>
       </form>
+
       <!-- <div class="button-function">
         <button type="button" class="sign-in-btn btn-light btn-lg" data-toggle="modal" data-target="#signIn-modal">
           Sign In

@@ -5,7 +5,7 @@ const ui = require('./ui')
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  console.log('data is ', data)
+  console.log('user is ', data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -14,10 +14,19 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  console.log('data is ', data)
+  console.log('user is', data)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
+}
+
+const onChangePassword = function (event) {
+  const data = getFormFields(this)
+  event.preventDefault()
+  console.log('user changes are ', data)
+  api.changePassword(data)
+    .then(ui.changePasswordSuccess)
+    .catch(ui.changePasswordFailure)
 }
 
 const onSignOut = function (event) {
@@ -31,18 +40,10 @@ const onSignOut = function (event) {
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
+  $('#change-pwd').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
 }
 
 module.exports = {
   addHandlers
 }
-
-// need to close the
-// const signOut = function (event) {
-//   const object = getFormFields(event.target)
-//   console.log(object)
-//   event.preventDefault()
-//   console.log(object.modal.form)
-//   $('#signOut-modal').modal('hide')
-// }
