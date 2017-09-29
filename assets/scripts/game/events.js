@@ -30,9 +30,9 @@ const click = function (event) {
     gameBoard[cellIndex] = currentPlayer
     console.log(gameBoard)
     // this will pass to the api and update each move
-    // api.updateGame(cellIndex, currentPlayer)
-    //   .then(ui.updateGameSuccess)
-    //   .catch(ui.updateOverFailure)
+    // api.updateEachTurn(cellIndex, currentPlayer)
+    //   .then(ui.updateEachTurnSuccess)
+    //   .catch(ui.updatEachTurnFailure)
     if (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2]) {
       if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
@@ -101,9 +101,9 @@ const click = function (event) {
       console.log('tie!')
       $('#user-message').text('It\'s a tie!')
       $('.cell').off('click')
-      // api.updateOver()
-      // .then(ui.updateOverSuccess)
-      // .catch(ui.updateOverFailure)
+      api.updateGameOver()
+        .then(ui.updateOverSuccess)
+        .catch(ui.updateOverFailure)
     }
   }
   // switch player turns
@@ -119,9 +119,9 @@ const gameOver = function (winner) {
   $('.cell').off('click')
   console.log('Winner is ', winner)
   $('#user-message').text('Winner is ' + winner + '!')
-  // api.updateGameOver()
-  //   .then(ui.updateOverSuccess)
-  //   .catch(ui.updateOverFailure)
+  api.updateGameOver()
+    .then(ui.updateOverSuccess)
+    .catch(ui.updateOverFailure)
 }
 
 const newGame = function (event) {
@@ -134,19 +134,21 @@ const newGame = function (event) {
   api.createGame()
     .then(ui.createSuccess)
     .catch(ui.createFailure)
+  $('.display-game-board').show()
+  $('#user-message').text('')
 }
 
-const getPlayerStats = function (event) {
-  event.preventDefault()
-  api.getStats()
-    .then(ui.getStatsSuccess)
-    .catch(ui.getStatsFailure)
-}
+// const getPlayerStats = function (event) {
+//   event.preventDefault()
+//   api.getStats()
+//     .then(ui.getStatsSuccess)
+//     .catch(ui.getStatsFailure)
+// }
 
 const addHandlers = function () {
   $('.cell').on('click', click) // jquery: when a cell is clicked, click function will execute
   $('.new-game').on('click', newGame) // jquery: when new game button is clicked, newGame function will execute
-  $('.stats').on('click', getPlayerStats) // jquery: when stats button is clicked, getPlayerStats function will execute
+//  $('.stats').on('click', getPlayerStats) // jquery: when stats button is clicked, getPlayerStats function will execute
 }
 
 module.exports = {

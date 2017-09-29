@@ -17,20 +17,21 @@ const createFailure = function (error) {
   $('#user-message').text('There was an error creating a new game, please try again.')
 }
 
-const updateGameSuccess = function () {
+const updateEachTurnSuccess = function () {
   // some code
 }
 
-const updateGameFailure = function () {
+const updateEachTurnFailure = function () {
   // some code
 }
 
 const updateOverSuccess = function (winner) {
-  $('#user-message').text('Winner is ', winner)
+  console.log(game.game)
+  // $('#user-message').text('Winner is ' + winner)
 }
 
 const updateOverFailure = function () {
-  // some code
+  $('#user-message').text('Unable to retrieve results of game, pleae try again.')
 }
 
 const getStatsSuccess = function (data) {
@@ -48,8 +49,8 @@ const getStatsFailure = function () {
 module.exports = {
   createSuccess,
   createFailure,
-  updateGameSuccess,
-  updateGameFailure,
+  updateEachTurnSuccess,
+  updateEachTurnFailure,
   updateOverSuccess,
   updateOverFailure,
   getStatsSuccess,

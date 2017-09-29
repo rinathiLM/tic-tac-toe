@@ -24,6 +24,7 @@ const onChangePassword = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
   console.log('user changes are ', data)
+  $('#change-pwd').show()
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
@@ -40,7 +41,7 @@ const onSignOut = function (event) {
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
-  $('#change-pwd').on('submit', onChangePassword)
+  $('#change-pwd-button').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
 }
 

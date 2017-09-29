@@ -27,8 +27,8 @@ const signInSuccess = function (data) {
   $('.sign-up-functionality').hide()
   $('.sign-in-functionality').hide()
   $('.change-pwd-functionality').show()
-  $('.display-game-board').show()
   $('#sign-out').show()
+  $('.new-game').show()
   // show stats button
 }
 

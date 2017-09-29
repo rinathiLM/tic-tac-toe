@@ -28,7 +28,7 @@ h2 {
 }
 
 #sign-out {
-  //display: none;
+  display: none;
   padding-left: 20px;
   padding-top: 20px;
 }
@@ -40,10 +40,17 @@ h2 {
   padding-top: 20px;
 }
 // .change-pwd-functionality,
-// .display-game-board {
-//   display: none;
-// }
+.display-game-board,
+.new-game,
+.change-pwd-functionality {
+  display: none;
+  padding-left: 20px;
+  padding-top: 20px;
+}
 
+#change-pwd{
+  display: none;
+}
 .display-game-board {
   margin-top: 100px;
 }

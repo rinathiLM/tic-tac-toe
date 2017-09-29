@@ -41,17 +41,20 @@
   </form>
 </div>
 
+<!--- user facing messages -->
+<div id="user-message"></div>
+
 <!-- these fields needs to be hidden until I'm signed in -->
-<!-- change pwd -->
+<!-- button to display change password fields -->
 <div class="change-pwd-functionality">
-  <h2>Change password</h2>
   <form id="change-pwd">
+    <h2>Change password</h2>
     <fieldset>
       <input name="passwords[old]" type="password" placeholder="Enter old password">
       <input name="passwords[new]" type="password" placeholder="Enter new password">
-      <input type="submit" name="submit" class="btn-primary btn-md" value='Change password'>
     </fieldset>
   </form>
+  <input type="submit" name="submit" class="btn-primary btn-md" id="change-pwd-button" value='Change password'>
 </div>
 
 <!-- fields that JSON needs when board is updated
@@ -62,9 +65,6 @@
           <input name="game[over]" type="text" value="false">
         </form>
       </div> -->
-
-<!--- user facing messages -->
-<div id="user-message"></div>
 
 <!-- tic tac toe board -->
 <div class="display-game-board">
@@ -105,4 +105,5 @@
   </fieldset>
 </form>
 </body>
+
 </html>
