@@ -1,223 +1,108 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <title>Tic Tac Toe</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `link` tags-->
-      <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+<head>
+  <title>Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-      <!-- Do not add `script` tags-->
-      <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
-      <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
-    </head>
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-    <body class="container-fluid">
-      <!-- want to use nav buttons eventually.. -->
-      <div class="topnav" id="myTopnav">
-        <a href="#">Home</a>
-        <a href="#">Play Game</a>
-        <a href="#">My Stats</a>
-        <a href="#">My Account</a>
-        <a href="javascript:void(0);" class="icon" onclick="navDisplay()">&#9776;</a>
-      </div>
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
 
-      <h1>Welcome to the classic game of</h1>
-      <h1>TIC TAC TOE</h1>
+<h1>Welcome to the classic game of</h1>
+<h1>TIC TAC TOE</h1>
 
-      <!-- sign up -->
-      <form id="sign-up">
-        <fieldset>
-          <input name="credentials[email]" type="text" placeholder="Enter email">
-          <input name="credentials[password]" type="password" placeholder="Enter password">
-          <input name="credentials[password_confirmation]" type="password" placeholder="Enter password again">
-          <input type="submit" name="submit" value="Sign up!">
-        </fieldset>
-      </form>
+<!-- sign up -->
+<div class="sign-up-functionality">
+  <h2>Sign up below</h2>
+  <form id="sign-up">
+    <fieldset>
+      <input name="credentials[email]" type="text" placeholder="Enter email">
+      <input name="credentials[password]" type="password" placeholder="Enter password">
+      <input name="credentials[password_confirmation]" type="password" placeholder="Confirm password">
+      <input type="submit" name="submit" class="btn-primary btn-md" value="Sign up">
+    </fieldset>
+  </form>
+</div>
 
-      <!--- sign in -->
-      <form id="sign-in">
-        <fieldset>
-          <input name="credentials[email]" type="text" placeholder="Enter email">
-          <input name="credentials[password]" type="password" placeholder="Enter password">
-          <input type="submit" name="submit" value="Sign in">
-        </fieldset>
-      </form>
+<!--- sign in -->
+<div class="sign-in-functionality">
+  <h2>Sign in here</h2>
+  <form id="sign-in">
+    <fieldset>
+      <input name="credentials[email]" type="text" placeholder="Enter email">
+      <input name="credentials[password]" type="password" placeholder="Enter password">
+      <input type="submit" name="submit" class="btn-primary btn-md" value="Sign in">
+    </fieldset>
+  </form>
+</div>
 
-      <!-- these fields needs to be hidden until I'm signed in -->
-      <!-- change pwd -->
-      <div class="sign-in-fields">
-        <form id="change-pwd">
-        <fieldset>
-          <input name="passwords[old]" type="password" placeholder="Enter old password">
-          <input name="passwords[new]" type="password" placeholder="Enter new password">
-          <input type="submit" name="submit" value='Change password'>
-        </fieldset>
-      </form>
+<!-- these fields needs to be hidden until I'm signed in -->
+<!-- change pwd -->
+<div class="change-pwd-functionality">
+  <h2>Change password</h2>
+  <form id="change-pwd">
+    <fieldset>
+      <input name="passwords[old]" type="password" placeholder="Enter old password">
+      <input name="passwords[new]" type="password" placeholder="Enter new password">
+      <input type="submit" name="submit" class="btn-primary btn-md" value='Change password'>
+    </fieldset>
+  </form>
+</div>
 
-      <!--- sign out -->
-      <form id="sign-out">
-        <fieldset>
-          <input type="submit" name="submit" value='Sign out'>
-        </fieldset>
-      </form>
-    </div>
-      <!-- tic tac toe board -->
-      <div class="game-table">
-        <table>
-        <tr>
-          <td class="cell" id="0"></td>
-          <td class="cell" id="1"></td>
-          <td class="cell" id="2"></td>
-        </tr>
-        <tr>
-          <td class="cell" id="3"></td>
-          <td class="cell" id="4"></td>
-          <td class="cell" id="5"></td>
-        </tr>
-        <tr>
-          <td class="cell" id="6"></td>
-          <td class="cell" id="7"></td>
-          <td class="cell" id="8"></td>
-        </tr>
-      </table>
-      <br>
-
-      <!-- text that someone won -->
-      <div class="endgame">
-        <div class="text"></div>
-      </div>
-
-      <!-- button to restart game -->
-      <button onClick="startGame()">Play Again</button>
-      <br>
-    </div>
-
-
-      <!-- <div class="button-function">
-        <button type="button" class="sign-in-btn btn-light btn-lg" data-toggle="modal" data-target="#signIn-modal">
-          Sign In
-        </button>
-        <button type="button" class="sign-up-btn btn-light btn-lg" data-toggle="modal" data-target="#signUp-modal">
-          Sign up
-        </button>
-        <div class="hide-at-start">
-          <button type="button" class="sign-out-btn btn-light btn-lg" data-toggle="modal" data-target="#signOut-modal">
-            Sign out
-          </button>
-          <button type="button" class="start-game-btn btn-light btn-lg" id="start-game" data-toggle="modal" data-target="#startGame-modal">
-            Start game
-          </button>
-          <button type="button" class="sign-in-btn btn-light btn-lg" data-toggle="modal" data-target="#changePwd-modal">
-            Change password
-          </button>
-          <button type="button" class="sign-in-btn btn-light btn-lg" data-toggle="modal" data-target="#stats-modal">
-            Get my stats
-          </button>
-        </div>
-      </div> -->
-      <!-- <div id="newpost">
-          Test text
-      </div>
-
-      <button id='button'>Click</button> -->
-
-      <!--
-      <button type="button" class="btn btn-light" data-toggle="modal" data-target="#signUpButton">
-        Sign up!
-      </button>
-      <div class="sign-up">
-        <form id="sign-up-form">
-          <input type="text" name="credentials[email]" id="sign-up-email" placeholder="Enter email here">
-          <input type="password" name="credentials[password]" id="sign-up-password" placeholder="Enter password here">
-          <input type="password" name="credentials[password_confirmation]" id="password-confirmation" placeholder="Enter password again">
-          <input type="submit" name="submit" value="Sign up!">
+<!-- fields that JSON needs when board is updated
+      <div class="game-inputs">
+        <form>
+          <input name="game[cell][index]" type="text" value="O">
+          <input name="game[cell][value]" type="text" value="X">
+          <input name="game[over]" type="text" value="false">
         </form>
       </div> -->
 
-      <!-- sign up
-    <div class="modal fade" id="signUp-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="sign-up-modal-label">Sign Up</h4>
-        </div>
-        <div class="modal-body">
-          <form id="sign-up">
-            <div class="form-group">
-              <input type="text" name="credentials[email]" id="sign-up-email" placeholder="Enter email here">
-              <input type="password" name="credentials[password]" id="sign-up-password" placeholder="Enter password here">
-              <input type="password" name="credentials[password_confirmation]" id="password-confirmation" placeholder="Enter password again">
-              <input type="submit" name="submit" value="Sign up!">
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div> -->
+<!--- user facing messages -->
+<div id="user-message"></div>
 
-  <!-- signout
-  <div class="modal fade" id="signOut-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="myModalLabel">works?</h4>
-          </div>
-          <div class="modal-body">
-            <form id="sign-out">
-              <div class="form-group">
-                <input type="submit" name="submit" value="Sign out">
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div> -->
+<!-- tic tac toe board -->
+<div class="display-game-board">
+  <table>
+    <tr>
+      <td class="cell" id="0"></td>
+      <td class="cell" id="1"></td>
+      <td class="cell" id="2"></td>
+    </tr>
+    <tr>
+      <td class="cell" id="3"></td>
+      <td class="cell" id="4"></td>
+      <td class="cell" id="5"></td>
+    </tr>
+    <tr>
+      <td class="cell" id="6"></td>
+      <td class="cell" id="7"></td>
+      <td class="cell" id="8"></td>
+    </tr>
+  </table>
+</div>
+<br>
 
-    <!-- tic tac toe empty board
-    <div class="container">
-      <div class="game-board">
-        <div class="row">
-          <div class="col-xs-4" id="one"></div>
-          <div class="col-xs-4" id="two"></div>
-          <div class="col-xs-4" id="three"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-4" id="four"></div>
-          <div class="col-xs-4" id="five"></div>
-          <div class="col-xs-4" id="six"></div>
-        </div>
-        <div class="row">
-          <div class="col-xs-4" id="seven"></div>
-          <div class="col-xs-4" id="eight"></div>
-          <div class="col-xs-4" id="nine"></div>
-        </div>
-      </div> -->
-      <!-- stats
-      <div class="stats">
-        <p>Games Played: </p>
-        <p>Games Won: </p>
-        <p>Games Tied: </p>
-        <p>Games Lost: </p>
-      </div> -->
-      <!-- account info
-      <div class="account">
-        <p>some text right now </p>
-      </div>
-    </div> -->
+<!-- button to restart game, with function that clears the board -->
+<div class="new-game">
+  <input type="submit" name="submit" class="btn-primary btn-md" value='Start a new game'>
+</div>
 
-      <!-- need to move this to JS functions page, this is the navigator function
-<script>
-      function navDisplay() {
-        let x = document.getElementById("myTopnav")
-        if (x.className === "topnav") {
-          x.className += " responsive"
-        } else {
-          x.className = "topnav"
-        }
-      }
-    </script> -->
-    </body>
+<!--- need to add stats HTML! -->
+<div class="stats">
+  <input type="submit" name="submit" class="btn-primary btn-md" value='Get your statistics'>
+</div>
+
+<!--- sign out -->
+<form id="sign-out">
+  <fieldset>
+    <input type="submit" name="submit" class="btn-primary btn-md" value='Sign out'>
+  </fieldset>
+</form>
+</body>
 </html>

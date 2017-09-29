@@ -23,16 +23,20 @@ const changePassword = function (data) {
   console.log(store.user.id)
   return $.ajax({
     url: config.apiOrigin + '/change-password/' + store.user.id,
-    headers: {Authorization: 'Token token=' + store.user.token},
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
     method: 'PATCH',
     data
   })
 }
 
-const signOut = function (data) {
+const signOut = function () {
   return $.ajax({
     url: config.apiOrigin + '/sign-out/' + store.user.id,
-    headers: {Authorization: 'Token token=' + store.user.token},
+    headers: {
+      Authorization: 'Token token=' + store.user.token
+    },
     method: 'DELETE'
   })
 }

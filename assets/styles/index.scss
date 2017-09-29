@@ -1,18 +1,62 @@
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
-@import 'navbar';
 
 h1 {
   font-family: 'Georgia', Times, serif;
+  font-size: 3em;
   padding-bottom: 15px;
   text-align: center;
+}
+
+h2 {
+  font-family: 'Georgia', Times, serif;
+  font-size: 1.5em;
+  padding-left: 20px;
+}
+
+#user-message {
+  font-family: 'Georgia', Times, serif;
+  font-size: 1.25em;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+#change-pwd,
+#sign-in,
+#sign-up {
+  padding-left: 20px;
+}
+
+#sign-out {
+  //display: none;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+
+.new-game,
+.stats {
+  //display: none;
+  padding-left: 20px;
+  padding-top: 20px;
+}
+// .change-pwd-functionality,
+// .display-game-board {
+//   display: none;
+// }
+
+.display-game-board {
+  margin-top: 100px;
+}
+
+.cell:hover {
+  background-color: #ADD8E6;
 }
 
 td {
   border: 2px solid #333;
   cursor: default;
-  font-family:  "Comic Sans MS", cursive, sans-serif;
-	font-size:  70px;
+  font-family: 'Georgia', Times, serif;
+  font-size: 70px;
   height: 100px;
   text-align: center;
   vertical-align: middle;
@@ -21,7 +65,7 @@ td {
 
 table {
   border-collapse: collapse;
-  left: 50%;
+  left: 30%;
   margin-left: auto;
   margin-right: auto;
   padding-top: 100px;
@@ -42,20 +86,4 @@ table tr td:first-child {
 
 table tr td:last-child {
   border-right: 0;
-}
-
-.endgame {
-  background-color: rgba(205, 133, 63, .8);
-  border-radius: 5px;
-  color: #fff;
-  display: none;
-  font-size: 2em;
-  left: 50%;
-  margin-left: -100px;
-  padding-bottom: 50px;
-  padding-top: 50px;
-  position: absolute;
-  text-align: center;
-  top: 120px;
-  width: 200px;
 }
