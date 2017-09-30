@@ -13,32 +13,33 @@ let gameBoard = ['', '', '', '', '', '', '', '', '']
 const click = function (event) {
   event.preventDefault()
   const cell = this.id
-  console.log('what is this', this)
-  console.log('cell is:', cell)
+  // console.log('what is this', this)
+  // console.log('cell is:', cell)
   // increment move count by 1 each time click happens
   moveCount += 1
-  console.log('move count is', moveCount)
+  $('#game-message').text('')
+  // console.log('move count is', moveCount)
   if (moveCount < 10) {
     // make html display current player's symbol
     $('#' + cell).html(currentPlayer)
-    // disable the click so it switches to next player
+    // disable the click for the current player
     $('#' + cell).off('click')
     // find index of cell that was clicked, convert to integer
     const cellIndex = parseInt(cell)
-    console.log(cellIndex)
+    // console.log(cellIndex)
     // update the gameBoard array at index that was selected
     gameBoard[cellIndex] = currentPlayer
-    console.log(gameBoard)
+    // console.log(gameBoard)
     // this will pass to the api and update each move
-    // api.updateEachTurn(cellIndex, currentPlayer)
-    //   .then(ui.updateEachTurnSuccess)
-    //   .catch(ui.updatEachTurnFailure)
+    api.updateEachTurn(cellIndex, currentPlayer)
+      .then(ui.updateEachTurnSuccess)
+      .catch(ui.updatEachTurnFailure)
     if (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2]) {
       if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
-        gameOver(player1)
+        gameOver(player2)
       } else if (gameBoard[0] === 'O') {
-        console.log(player2, ' wins!')
+        console.log(player1, ' wins!')
         gameOver(player2)
       }
     } else if (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6]) {
@@ -99,7 +100,7 @@ const click = function (event) {
       }
     } else if (moveCount >= 9) {
       console.log('tie!')
-      $('#user-message').text('It\'s a tie!')
+      $('#game-message').text('It\'s a tie!')
       $('.cell').off('click')
       api.updateGameOver()
         .then(ui.updateOverSuccess)
@@ -118,14 +119,14 @@ const click = function (event) {
 const gameOver = function (winner) {
   $('.cell').off('click')
   console.log('Winner is ', winner)
-  $('#user-message').text('Winner is ' + winner + '!')
+  $('#game-message').text('The winner is player ' + winner + '!')
   api.updateGameOver()
     .then(ui.updateOverSuccess)
     .catch(ui.updateOverFailure)
 }
 
 const newGame = function (event) {
-  $('.cell').empty()
+  $('.cell').text('')
   moveCount = 0
   currentPlayer = player1
   gameBoard = ['', '', '', '', '', '', '', '', '']
@@ -135,20 +136,34 @@ const newGame = function (event) {
     .then(ui.createSuccess)
     .catch(ui.createFailure)
   $('.display-game-board').show()
-  $('#user-message').text('')
+  $('.home').show()
 }
 
-// const getPlayerStats = function (event) {
-//   event.preventDefault()
-//   api.getStats()
-//     .then(ui.getStatsSuccess)
-//     .catch(ui.getStatsFailure)
-// }
+const getPlayerStats = function (event) {
+  event.preventDefault()
+  console.log('got to stats')
+  api.getStats()
+    .then(ui.getStatsSuccess)
+    .catch(ui.getStatsFailure)
+  $('.home').show()
+}
+
+const goHome = function (event) {
+  $('#home-page-message').text('What would you like to do now?')
+  $('#game-message').text('')
+  $('.password-functionality').show()
+  $('.sign-out').show()
+  $('.new-game').show()
+  $('.stats').show()
+  $('.display-game-board').hide()
+  $('.home').hide()
+}
 
 const addHandlers = function () {
   $('.cell').on('click', click) // jquery: when a cell is clicked, click function will execute
   $('.new-game').on('click', newGame) // jquery: when new game button is clicked, newGame function will execute
-//  $('.stats').on('click', getPlayerStats) // jquery: when stats button is clicked, getPlayerStats function will execute
+  $('.stats').on('click', getPlayerStats) // jquery: when stats button is clicked, getPlayerStats function will execute
+  $('.home').on('click', goHome)
 }
 
 module.exports = {

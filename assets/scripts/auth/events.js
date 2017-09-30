@@ -5,7 +5,6 @@ const ui = require('./ui')
 const onSignUp = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  console.log('user is ', data)
   api.signUp(data)
     .then(ui.signUpSuccess)
     .catch(ui.signUpFailure)
@@ -14,7 +13,6 @@ const onSignUp = function (event) {
 const onSignIn = function (event) {
   const data = getFormFields(this)
   event.preventDefault()
-  console.log('user is', data)
   api.signIn(data)
     .then(ui.signInSuccess)
     .catch(ui.signInFailure)
@@ -22,9 +20,8 @@ const onSignIn = function (event) {
 
 const onChangePassword = function (event) {
   const data = getFormFields(this)
+  console.log(this)
   event.preventDefault()
-  console.log('user changes are ', data)
-  $('#change-pwd').show()
   api.changePassword(data)
     .then(ui.changePasswordSuccess)
     .catch(ui.changePasswordFailure)
@@ -41,7 +38,7 @@ const onSignOut = function (event) {
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
-  $('#change-pwd-button').on('submit', onChangePassword)
+  $('#change-pwd').on('submit', onChangePassword)
   $('#sign-out').on('submit', onSignOut)
 }
 

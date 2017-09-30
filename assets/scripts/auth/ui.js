@@ -2,71 +2,73 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
-  console.log(data)
-  console.log('successfully signed up')
-  $('#user-message').text('You signed up successfully! What would you like to do now?')
+  $('#home-page-message').text('You signed up successfully! Please sign into your new account to start playing!')
   $('.sign-up-functionality').hide()
-  $('.sign-in-functionality').hide()
-  $('.change-pwd-functionality').show()
-  $('.display-game-board').show()
-  $('#sign-out').show()
-  // show stats button
+  $('.sign-in-functionality').show()
 }
 
 const signUpFailure = function (error) {
   console.error(error)
-  console.log('failed sign up')
-  $('#user-message').text('There was an error signing up, please try again')
+  $('#home-page-message').text('There was an error signing up, please try again.')
+  $('#sign-up-name').val('')
+  $('#sign-up-pwd').val('')
+  $('#sign-up-pwd-2').val('')
 }
 
 const signInSuccess = function (data) {
-  console.log(data)
-  console.log('successfully signed in')
-  $('#user-message').text('What would you like to do now?')
   store.user = data.user
+  $('#home-page-message').text('What would you like to do now?')
   $('.sign-up-functionality').hide()
   $('.sign-in-functionality').hide()
-  $('.change-pwd-functionality').show()
-  $('#sign-out').show()
+  $('.password-functionality').show()
+  $('.sign-out').show()
   $('.new-game').show()
-  // show stats button
+  $('.stats').show()
+  $('.modal fade').show()
+  $('.btn.btn-primary').show()
 }
 
 const signInFailure = function (error) {
   console.error(error)
-  console.log('failed sign in')
-  $('#user-message').text('There was an error signing in, please try again')
+  $('#home-page-message').text('There was an error signing in, please try again.')
+  $('#sign-in-name').val('')
+  $('#sign-in-pwd').val('')
 }
 
 const changePasswordSuccess = function () {
   console.log('Changed password successfully')
-  $('#message').text('Changed password successfully. What would you like to do now?')
-  $('#change-pwd-functionality').hide()
-  $('.display-game-board').show()
-  $('#sign-out').show()
-  // show stats button
+  $('#home-page-message').text('Changed password successfully. What would you like to do now?')
+  $('.c').
+  $('#old-pwd').val('')
+  $('#new-pwd').val('')
+  $('.sign-out').show()
+  $('.new-game').show()
+  $('.stats').show()
+  $('.sign-out').show()
 }
 
 const changePasswordFailure = function (error) {
   console.error(error)
-  $('#message').text('error')
+  // $('#message').text('There was an error, please try updating your password again.')
 }
 
 const signOutSuccess = function () {
   console.log('Signed out successfully')
-  $('#message').text('Signed out successfully')
   store.user = null // setting this to null to clear out our user data
   $('.sign-up-functionality').show()
   $('.sign-in-functionality').show()
-  $('#sign-out').hide()
+  $('.sign-out').hide()
   $('.change-pwd-functionality').hide()
   $('.display-game-board').hide()
   $('.stats').hide()
+  $('.home').hide()
+  $('.new-game').hide()
+  $('#sign-in-user-message-success').text('')
 }
 
 const signOutFailure = function (error) {
   console.error(error)
-  $('#message').text('Something is wrong')
+  $('#home-page-message').text('Something is wrong')
 }
 
 module.exports = {

@@ -7,9 +7,12 @@ const createSuccess = function (data) {
   console.log(data)
   game.game = data.game
   console.log(game.game)
-  // show only gameBoard, sign out, password, and new game button shows
-  // $('.display-game-board').show()
-  // $('').hide() --- hide other buttons as needed
+  $('.password-functionality').hide()
+  $('.stats').hide()
+  $('.sign-out').hide()
+  $('.new-game').show()
+  $('#home-page-message').hide()
+  $('#game-message').text('Click any cell to start playing!')
 }
 
 const createFailure = function (error) {
@@ -35,15 +38,27 @@ const updateOverFailure = function () {
 }
 
 const getStatsSuccess = function (data) {
-  // const gameTotal = Object.keys(data.game).length
-  // console.log(gameTotal)
+  console.log(data)
+  const gameTotal = (data.games).length
   // const gameTieTotal = xxx
   // console.log(gameTieTotal)
-  // $('#user-message').text('You played ', gameTotal, ' games')
+  $('#stats-message').text('Games played: ' + gameTotal)
+  $('.change-pwd-functionality').hide()
+  $('.change-pwd-button').hide()
+  $('.stats').hide()
+  $('.new-game').hide()
+  $('#sign-in-user-message-success').hide()
+  $('#sign-out').hide()
+  // show a home button to get back to page
 }
 
 const getStatsFailure = function () {
-  $('#user-message').text('Unable to retrieve game statistics, please try again.')
+  $('#stats-message').text('Unable to retrieve game statistics, please try again.')
+  $('.new-game').hide()
+  $('#sign-in-user-message-success').hide()
+  $('#sign-out').hide()
+  // hide password button
+  // show some type of home button
 }
 
 module.exports = {

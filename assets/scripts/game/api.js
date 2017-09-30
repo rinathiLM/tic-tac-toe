@@ -19,7 +19,7 @@ const createGame = function () {
 }
 
 const updateEachTurn = function (cellIndex, player) {
-  console.log(game.game)
+  console.log(game)
   return $.ajax({
     url: config.apiOrigin + '/games/' + game.game.id,
     method: 'PATCH',
@@ -40,7 +40,7 @@ const updateEachTurn = function (cellIndex, player) {
 
 const updateGameOver = function () {
   console.log(store.user)
-  console.log(game.game)
+  console.log(game.game.id)
   return $.ajax({
     url: config.apiOrigin + '/games/' + game.game.id,
     method: 'PATCH',

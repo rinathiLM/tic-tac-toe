@@ -14,43 +14,31 @@ h2 {
   padding-left: 20px;
 }
 
-#user-message {
+#home-page-message,
+#game-message,
+#stats-message {
   font-family: 'Georgia', Times, serif;
   font-size: 1.25em;
   padding-left: 20px;
   padding-top: 20px;
 }
 
-#change-pwd,
 #sign-in,
 #sign-up {
   padding-left: 20px;
 }
 
-#sign-out {
-  display: none;
-  padding-left: 20px;
-  padding-top: 20px;
-}
 
-.new-game,
-.stats {
-  //display: none;
-  padding-left: 20px;
-  padding-top: 20px;
-}
-// .change-pwd-functionality,
 .display-game-board,
 .new-game,
-.change-pwd-functionality {
+.stats,
+.home,
+.sign-out {
   display: none;
   padding-left: 20px;
   padding-top: 20px;
 }
 
-#change-pwd{
-  display: none;
-}
 .display-game-board {
   margin-top: 100px;
 }
@@ -61,7 +49,7 @@ h2 {
 
 td {
   border: 2px solid #333;
-  cursor: default;
+  cursor: pointer;
   font-family: 'Georgia', Times, serif;
   font-size: 70px;
   height: 100px;

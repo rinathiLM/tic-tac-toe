@@ -16,14 +16,16 @@
 <h1>Welcome to the classic game of</h1>
 <h1>TIC TAC TOE</h1>
 
+<div id="home-page-message"></div>
+
 <!-- sign up -->
 <div class="sign-up-functionality">
   <h2>Sign up below</h2>
   <form id="sign-up">
     <fieldset>
-      <input name="credentials[email]" type="text" placeholder="Enter email">
-      <input name="credentials[password]" type="password" placeholder="Enter password">
-      <input name="credentials[password_confirmation]" type="password" placeholder="Confirm password">
+      <input name="credentials[email]" id="sign-up-name" type="text" placeholder="Enter email">
+      <input name="credentials[password]" id="sign-up-pwd" type="password" placeholder="Enter password">
+      <input name="credentials[password_confirmation]" id="sign-up-pwd-2" type="password" placeholder="Confirm password">
       <input type="submit" name="submit" class="btn-primary btn-md" value="Sign up">
     </fieldset>
   </form>
@@ -31,31 +33,27 @@
 
 <!--- sign in -->
 <div class="sign-in-functionality">
-  <h2>Sign in here</h2>
+  <h2 id="sign-in-text">Sign in here</h2>
   <form id="sign-in">
     <fieldset>
-      <input name="credentials[email]" type="text" placeholder="Enter email">
-      <input name="credentials[password]" type="password" placeholder="Enter password">
+      <input name="credentials[email]" id="sign-in-name" type="text" placeholder="Enter email">
+      <input name="credentials[password]" id="sign-in-pwd" type="password" placeholder="Enter password">
       <input type="submit" name="submit" class="btn-primary btn-md" value="Sign in">
     </fieldset>
   </form>
 </div>
 
-<!--- user facing messages -->
-<div id="user-message"></div>
-
 <!-- these fields needs to be hidden until I'm signed in -->
-<!-- button to display change password fields -->
-<div class="change-pwd-functionality">
+<!-- <div class="password-functionality">
+  <h2 id="change-pwd-text">Change Password</h2>
   <form id="change-pwd">
-    <h2>Change password</h2>
     <fieldset>
-      <input name="passwords[old]" type="password" placeholder="Enter old password">
-      <input name="passwords[new]" type="password" placeholder="Enter new password">
+      <input name="passwords[old]" type="password" id="old-pwd" placeholder="Enter old password">
+      <input name="passwords[new]" type="password" id="new-pwd" placeholder="Enter new password">
+      <input type="submit" name="submit" class="btn-primary btn-md" value="Change password">
     </fieldset>
   </form>
-  <input type="submit" name="submit" class="btn-primary btn-md" id="change-pwd-button" value='Change password'>
-</div>
+</div> -->
 
 <!-- fields that JSON needs when board is updated
       <div class="game-inputs">
@@ -65,6 +63,9 @@
           <input name="game[over]" type="text" value="false">
         </form>
       </div> -->
+
+<!--- game message -->
+<div id="game-message"></div>
 
 <!-- tic tac toe board -->
 <div class="display-game-board">
@@ -93,17 +94,22 @@
   <input type="submit" name="submit" class="btn-primary btn-md" value='Start a new game'>
 </div>
 
-<!--- need to add stats HTML! -->
+<!-- stats -->
+<div id="stats-message"></div>
 <div class="stats">
   <input type="submit" name="submit" class="btn-primary btn-md" value='Get your statistics'>
 </div>
 
-<!--- sign out -->
-<form id="sign-out">
-  <fieldset>
-    <input type="submit" name="submit" class="btn-primary btn-md" value='Sign out'>
-  </fieldset>
-</form>
+<!-- home page button -->
+<div class="home">
+  <input type="submit" name="submit" class="btn-primary btn-md" value='Home'>
+</div>
+
+<!-- sign out -->
+<div class="sign-out">
+  <input type="submit" name="submit" class="btn-primary btn-md" value='Sign out'>
+</div>
+
 </body>
 
 </html>
