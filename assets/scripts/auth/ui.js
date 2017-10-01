@@ -2,6 +2,7 @@
 const store = require('../store')
 
 const signUpSuccess = function (data) {
+  console.log('Signed up successfully')
   $('#home-page-message').text('You signed up successfully! Please sign into your new account to start playing!')
   $('.sign-up-functionality').hide()
   $('.sign-in-functionality').show()
@@ -16,8 +17,10 @@ const signUpFailure = function (error) {
 }
 
 const signInSuccess = function (data) {
+  console.log('Signed in successfully')
   store.user = data.user
-  $('#home-page-message').text('What would you like to do now?')
+  $('#home-page-message').text('')
+  $('#logged-in-message').text('What would you like to do now?')
   $('.sign-up-functionality').hide()
   $('.sign-in-functionality').hide()
   $('.sign-out').show()
@@ -34,7 +37,7 @@ const signInFailure = function (error) {
 
 const changePasswordSuccess = function () {
   console.log('Changed password successfully')
-  $('#home-page-message').text('Changed password successfully. What would you like to do now?')
+  $('#logged-in-message').text('Changed password successfully. What would you like to do now?')
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
@@ -43,25 +46,31 @@ const changePasswordSuccess = function () {
 
 const changePasswordFailure = function (error) {
   console.error(error)
-  // $('#message').text('There was an error, please try updating your password again.')
+  $('#home-page-message').text('There was an error, please try updating your password again.')
 }
 
 const signOutSuccess = function () {
   console.log('Signed out successfully')
   store.user = null // setting this to null to clear out our user data
+  $('#logged-in-message').text('')
   $('.sign-up-functionality').show()
   $('.sign-in-functionality').show()
   $('.sign-out').hide()
-  $('.display-game-board').hide()
-  $('.stats').hide()
-  $('.home').hide()
   $('.new-game').hide()
-  $('#sign-in-user-message-success').text('')
+  $('.stats').hide()
+  $('.display-game-board').hide()
+  $('.home').hide()
+  // have to clear out all the values from the sign-in/up screen
+  $('#sign-in-name').val('')
+  $('#sign-in-pwd').val('')
+  $('#sign-up-name').val('')
+  $('#sign-up-pwd').val('')
+  $('#sign-up-pwd-2').val('')
 }
 
 const signOutFailure = function (error) {
   console.error(error)
-  $('#home-page-message').text('Something is wrong')
+  $('#logged-in-message').text('Something is wrong, please try signing out again.')
 }
 
 module.exports = {

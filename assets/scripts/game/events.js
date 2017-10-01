@@ -3,6 +3,8 @@
 // const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const authApi = require('../auth/api')
+const authUi = require('../auth/ui')
 
 const player1 = 'X'
 const player2 = 'O'
@@ -17,7 +19,7 @@ const click = function (event) {
   // console.log('cell is:', cell)
   // increment move count by 1 each time click happens
   moveCount += 1
-  $('#game-message').text('')
+  $('#logged-in-message').text('')
   // console.log('move count is', moveCount)
   if (moveCount < 10) {
     // make html display current player's symbol
@@ -42,15 +44,23 @@ const click = function (event) {
         console.log(player1, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6]) {
-      if (gameBoard[0] === 'X') {
+    } else if (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5]) {
+      if (gameBoard[3] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[0] === 'O') {
+      } else if (gameBoard[3] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8]) {
+    } else if (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8]) {
+      if (gameBoard[6] === 'X') {
+        console.log(player1, ' wins!')
+        gameOver(player1)
+      } else if (gameBoard[6] === 'O') {
+        console.log(player2, ' wins!')
+        gameOver(player2)
+      }
+    } else if (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6]) {
       if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -74,19 +84,11 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5]) {
-      if (gameBoard[3] === 'X') {
+    } else if (gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8]) {
+      if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[3] === 'O') {
-        console.log(player2, ' wins!')
-        gameOver(player2)
-      }
-    } else if (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8]) {
-      if (gameBoard[6] === 'X') {
-        console.log(player1, ' wins!')
-        gameOver(player1)
-      } else if (gameBoard[6] === 'O') {
+      } else if (gameBoard[0] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
@@ -100,7 +102,7 @@ const click = function (event) {
       }
     } else if (moveCount >= 9) {
       console.log('tie!')
-      $('#game-message').text('It\'s a tie!')
+      $('#logged-in-message').text('It\'s a tie!')
       $('.cell').off('click')
       api.updateGameOver()
         .then(ui.updateOverSuccess)
@@ -119,7 +121,7 @@ const click = function (event) {
 const gameOver = function (winner) {
   $('.cell').off('click')
   console.log('Winner is ', winner)
-  $('#game-message').text('The winner is player ' + winner + '!')
+  $('#logged-in-message').text('The winner is player ' + winner + '!')
   api.updateGameOver()
     .then(ui.updateOverSuccess)
     .catch(ui.updateOverFailure)
@@ -127,6 +129,7 @@ const gameOver = function (winner) {
 
 const newGame = function (event) {
   $('.cell').text('')
+  $('#logged-in-message').text('Click any cell to start playing!')
   moveCount = 0
   currentPlayer = player1
   gameBoard = ['', '', '', '', '', '', '', '', '']
@@ -135,8 +138,6 @@ const newGame = function (event) {
   api.createGame()
     .then(ui.createSuccess)
     .catch(ui.createFailure)
-  $('.display-game-board').show()
-  $('.home').show()
 }
 
 const getPlayerStats = function (event) {
@@ -148,32 +149,22 @@ const getPlayerStats = function (event) {
 }
 
 const goHome = function (event) {
-  $('#home-page-message').text('What would you like to do now?')
-  $('#game-message').text('')
+  console.log('go back to home')
+  $('#logged-in-message').text('What would you like to do now?')
   $('.password-functionality').show()
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
   $('.display-game-board').hide()
   $('.home').hide()
-  $('#stats-message').hide()
 }
 
 const onSignOut = function (event) {
-  // hide any previous messages and buttons
-  $('#home-page-message').hide()
-  $('.sign-out').hide()
-  $('.new-game').hide()
-  $('.stats').hide()
-  $('.home').hide()
-  // show sign in screen, reset the values to empty out signup/signin fields
-  $('.sign-in-functionality').show()
-  $('.sign-up-functionality').show()
-  $('#sign-in-name').val('')
-  $('#sign-in-pwd').val('')
-  $('#sign-up-name').val('')
-  $('#sign-up-pwd').val('')
-  $('#sign-up-pwd-2').val('')
+  event.preventDefault()
+  console.log('signed out')
+  authApi.signOut()
+    .then(authUi.signOutSuccess)
+    .catch(authUi.signInFailure)
 }
 
 const addHandlers = function () {

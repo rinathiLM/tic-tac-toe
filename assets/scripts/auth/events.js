@@ -27,19 +27,11 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
-const onSignOut = function (event) {
-  event.preventDefault()
-  api.signOut()
-    .then(ui.signOutSuccess)
-    .catch(ui.signInFailure)
-}
-
 // put all events in this function only, this is exported
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
   $('#change-pwd').on('submit', onChangePassword)
-  $('#sign-out').on('submit', onSignOut)
 }
 
 module.exports = {
