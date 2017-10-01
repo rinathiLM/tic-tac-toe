@@ -3,9 +3,9 @@
 // const store = require('../store')
 const game = require('../game')
 
-const createSuccess = function (data) {
-  console.log(data)
-  game.game = data.game
+const createSuccess = function (gameObject) {
+  console.log(gameObject)
+  game.game = gameObject.game
   console.log(game.game)
   $('.password-functionality').hide()
   $('.stats').hide()
@@ -30,7 +30,6 @@ const updateEachTurnFailure = function () {
 
 const updateOverSuccess = function (winner) {
   console.log(game.game)
-  // $('#user-message').text('Winner is ' + winner)
 }
 
 const updateOverFailure = function () {
@@ -42,14 +41,16 @@ const getStatsSuccess = function (data) {
   const gameTotal = (data.games).length
   // const gameTieTotal = xxx
   // console.log(gameTieTotal)
+  $('#home-page-message').text('')
+  $('#game-message').text('')
   $('#stats-message').text('Games played: ' + gameTotal)
+  $('.home').show()
   $('.change-pwd-functionality').hide()
   $('.change-pwd-button').hide()
   $('.stats').hide()
   $('.new-game').hide()
   $('#sign-in-user-message-success').hide()
-  $('#sign-out').hide()
-  // show a home button to get back to page
+  $('.sign-out').hide()
 }
 
 const getStatsFailure = function () {

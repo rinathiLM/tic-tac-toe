@@ -13,8 +13,8 @@ const createGame = function () {
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
-    },
-    data: '{}'
+    }
+    // data: '{}'
   })
 }
 
@@ -58,7 +58,7 @@ const updateGameOver = function () {
 const getStats = function () {
   console.log()
   return $.ajax({
-    url: config.apiOrigin + '/games/',
+    url: config.apiOrigin + '/games',
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token

@@ -145,7 +145,6 @@ const getPlayerStats = function (event) {
   api.getStats()
     .then(ui.getStatsSuccess)
     .catch(ui.getStatsFailure)
-  $('.home').show()
 }
 
 const goHome = function (event) {
@@ -157,6 +156,24 @@ const goHome = function (event) {
   $('.stats').show()
   $('.display-game-board').hide()
   $('.home').hide()
+  $('#stats-message').hide()
+}
+
+const onSignOut = function (event) {
+  // hide any previous messages and buttons
+  $('#home-page-message').hide()
+  $('.sign-out').hide()
+  $('.new-game').hide()
+  $('.stats').hide()
+  $('.home').hide()
+  // show sign in screen, reset the values to empty out signup/signin fields
+  $('.sign-in-functionality').show()
+  $('.sign-up-functionality').show()
+  $('#sign-in-name').val('')
+  $('#sign-in-pwd').val('')
+  $('#sign-up-name').val('')
+  $('#sign-up-pwd').val('')
+  $('#sign-up-pwd-2').val('')
 }
 
 const addHandlers = function () {
@@ -164,6 +181,7 @@ const addHandlers = function () {
   $('.new-game').on('click', newGame) // jquery: when new game button is clicked, newGame function will execute
   $('.stats').on('click', getPlayerStats) // jquery: when stats button is clicked, getPlayerStats function will execute
   $('.home').on('click', goHome)
+  $('.sign-out').on('click', onSignOut)
 }
 
 module.exports = {

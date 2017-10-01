@@ -20,12 +20,9 @@ const signInSuccess = function (data) {
   $('#home-page-message').text('What would you like to do now?')
   $('.sign-up-functionality').hide()
   $('.sign-in-functionality').hide()
-  $('.password-functionality').show()
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
-  $('.modal fade').show()
-  $('.btn.btn-primary').show()
 }
 
 const signInFailure = function (error) {
@@ -38,9 +35,6 @@ const signInFailure = function (error) {
 const changePasswordSuccess = function () {
   console.log('Changed password successfully')
   $('#home-page-message').text('Changed password successfully. What would you like to do now?')
-  $('.c').
-  $('#old-pwd').val('')
-  $('#new-pwd').val('')
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
@@ -58,7 +52,6 @@ const signOutSuccess = function () {
   $('.sign-up-functionality').show()
   $('.sign-in-functionality').show()
   $('.sign-out').hide()
-  $('.change-pwd-functionality').hide()
   $('.display-game-board').hide()
   $('.stats').hide()
   $('.home').hide()
