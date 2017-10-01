@@ -19,10 +19,13 @@ const signUpFailure = function (error) {
 const signInSuccess = function (data) {
   console.log('Signed in successfully')
   store.user = data.user
+  console.log(data)
+  console.log(data.user)
   $('#home-page-message').text('')
   $('#logged-in-message').text('What would you like to do now?')
   $('.sign-up-functionality').hide()
   $('.sign-in-functionality').hide()
+  $('.change-password').show()
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
@@ -38,6 +41,8 @@ const signInFailure = function (error) {
 const changePasswordSuccess = function () {
   console.log('Changed password successfully')
   $('#logged-in-message').text('Changed password successfully. What would you like to do now?')
+  $('.unhide-change-password').hide()
+  $('.change-password').show()
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
@@ -46,7 +51,7 @@ const changePasswordSuccess = function () {
 
 const changePasswordFailure = function (error) {
   console.error(error)
-  $('#home-page-message').text('There was an error, please try updating your password again.')
+  $('#logged-in-message').text('There was an error, please try updating your password again.')
 }
 
 const signOutSuccess = function () {
@@ -60,6 +65,7 @@ const signOutSuccess = function () {
   $('.stats').hide()
   $('.display-game-board').hide()
   $('.home').hide()
+  $('.change-password').hide()
   // have to clear out all the values from the sign-in/up screen
   $('#sign-in-name').val('')
   $('#sign-in-pwd').val('')

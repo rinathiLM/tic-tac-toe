@@ -36,15 +36,15 @@ const click = function (event) {
     api.updateEachTurn(cellIndex, currentPlayer)
       .then(ui.updateEachTurnSuccess)
       .catch(ui.updatEachTurnFailure)
-    if (gameBoard[0] === gameBoard[1] && gameBoard[0] === gameBoard[2]) {
+    if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
       if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
-        gameOver(player2)
+        gameOver(player1)
       } else if (gameBoard[0] === 'O') {
         console.log(player1, ' wins!')
-        gameOver(player2)
+        gameOver(player1)
       }
-    } else if (gameBoard[3] === gameBoard[4] && gameBoard[3] === gameBoard[5]) {
+    } else if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5]) {
       if (gameBoard[3] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -52,7 +52,7 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[6] === gameBoard[7] && gameBoard[6] === gameBoard[8]) {
+    } else if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]) {
       if (gameBoard[6] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -60,7 +60,7 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[0] === gameBoard[3] && gameBoard[0] === gameBoard[6]) {
+    } else if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6]) {
       if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -68,7 +68,7 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[1] === gameBoard[4] && gameBoard[1] === gameBoard[7]) {
+    } else if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7]) {
       if (gameBoard[1] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -76,7 +76,7 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[2] === gameBoard[5] && gameBoard[2] === gameBoard[8]) {
+    } else if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8]) {
       if (gameBoard[2] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -84,7 +84,7 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[0] === gameBoard[4] && gameBoard[0] === gameBoard[8]) {
+    } else if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8]) {
       if (gameBoard[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -92,7 +92,7 @@ const click = function (event) {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[2] === gameBoard[4] && gameBoard[2] === gameBoard[6]) {
+    } else if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]) {
       if (gameBoard[2] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
@@ -121,7 +121,7 @@ const click = function (event) {
 const gameOver = function (winner) {
   $('.cell').off('click')
   console.log('Winner is ', winner)
-  $('#logged-in-message').text('The winner is player ' + winner + '!')
+  $('#logged-in-message').text('The winner is player ' + winner + '! Click below to start a new game or go back to the home page.')
   api.updateGameOver()
     .then(ui.updateOverSuccess)
     .catch(ui.updateOverFailure)
@@ -151,6 +151,7 @@ const getPlayerStats = function (event) {
 const goHome = function (event) {
   console.log('go back to home')
   $('#logged-in-message').text('What would you like to do now?')
+  $('.change-password').show()
   $('.password-functionality').show()
   $('.sign-out').show()
   $('.new-game').show()
