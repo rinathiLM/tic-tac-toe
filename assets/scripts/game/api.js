@@ -5,21 +5,18 @@ const store = require('../store')
 const game = require('../game')
 
 const createGame = function () {
-  // remember to test this when I'm logged in..
-  console.log('new game created')
-  console.log(game.game)
+  // console.log('new game created')
+  // console.log(game.game)
   return $.ajax({
     url: config.apiOrigin + '/games',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + store.user.token
     }
-    // data: '{}'
   })
 }
 
-const updateEachTurn = function (cellIndex, player) {
-  console.log(game)
+const updateTurn = function (cell, currentPlayer) {
   return $.ajax({
     url: config.apiOrigin + '/games/' + game.game.id,
     method: 'PATCH',
@@ -29,8 +26,8 @@ const updateEachTurn = function (cellIndex, player) {
     data: {
       'game': {
         'cell': {
-          'index': cellIndex,
-          'value': player
+          'index': cell,
+          'value': currentPlayer
         },
         'over': false
       }
@@ -38,9 +35,7 @@ const updateEachTurn = function (cellIndex, player) {
   })
 }
 
-const updateGameOver = function () {
-  console.log(store.user)
-  console.log(game.game.id)
+const updateDone = function (cell, currentPlayer) {
   return $.ajax({
     url: config.apiOrigin + '/games/' + game.game.id,
     method: 'PATCH',
@@ -49,16 +44,19 @@ const updateGameOver = function () {
     },
     data: {
       'game': {
-        'over': true
+        'cell': {
+          'index': cell,
+          'value': currentPlayer
+        },
+        'over': false
       }
     }
   })
 }
 
 const getStats = function () {
-  console.log()
   return $.ajax({
-    url: config.apiOrigin + '/games',
+    url: config.apiOrigin + '/games', // /use games/?over ??
     method: 'GET',
     headers: {
       Authorization: 'Token token=' + store.user.token
@@ -68,7 +66,7 @@ const getStats = function () {
 
 module.exports = {
   createGame,
-  updateEachTurn,
-  updateGameOver,
+  updateTurn,
+  updateDone,
   getStats
 }

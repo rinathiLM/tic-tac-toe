@@ -20,18 +20,21 @@ const onSignIn = function (event) {
 
 const onChangePasswordClick = function (event) {
   event.preventDefault()
-  console.log('button clicked')
-  $('.change-password').hide()
-  $('.unhide-change-password').show()
+  // console.log('button clicked')
+  $('#logged-in-message').text('')
+  $('#change-password-button').hide()
+  $('#unhide-change-password').show()
+  $('.home').show()
   $('.new-game').hide()
   $('.stats').hide()
   $('.sign-out').hide()
-  $('#logged-in-message').text('')
+  $('#old-pwd').val('')
+  $('#new-pwd').val('')
 }
 
 const onChangePassword = function (event) {
   event.preventDefault()
-  console.log('confirm changes clicked')
+  // console.log('confirm password clicked')
   const data = getFormFields(this)
   console.log(this)
   console.log(data)
@@ -40,11 +43,10 @@ const onChangePassword = function (event) {
     .catch(ui.changePasswordFailure)
 }
 
-// put all events in this function only, this is exported
 const addHandlers = function () {
   $('#sign-up').on('submit', onSignUp)
   $('#sign-in').on('submit', onSignIn)
-  $('.change-password').on('click', onChangePasswordClick)
+  $('#change-password-button').on('click', onChangePasswordClick)
   $('#change-pwd').on('submit', onChangePassword)
 }
 

@@ -1,13 +1,13 @@
 'use strict'
 
-// const store = require('../store')
 const game = require('../game')
 
 const createSuccess = function (gameObject) {
-  console.log(gameObject)
+  // console.log(gameObject)
   game.game = gameObject.game
-  console.log(game.game)
-  $('.password-functionality').hide()
+  // console.log(game.game)
+  $('#logged-in-message').text('Click any cell to start playing!')
+  $('#change-password-button').hide()
   $('.stats').hide()
   $('.sign-out').hide()
   $('.display-game-board').show()
@@ -17,34 +17,24 @@ const createSuccess = function (gameObject) {
 
 const createFailure = function (error) {
   console.error(error)
-  // $('#user-message').text('There was an error creating a new game, please try again.')
+  $('#logged-in-message').text('There was an error creating a new game, please try again.')
 }
 
-const updateEachTurnSuccess = function () {
-  console.log(game.game)
+const updateSuccess = function (data) {
+  game.game = data.game
+  // console.log(game.game)
 }
 
-const updateEachTurnFailure = function (error) {
+const updateFailure = function (error) {
   console.error(error)
-}
-
-const updateOverSuccess = function () {
-  console.log(game.game)
-}
-
-const updateOverFailure = function (error) {
-  console.error(error)
-  // $('#user-message').text('Unable to retrieve results of game, pleae try again.')
 }
 
 const getStatsSuccess = function (data) {
-  console.log(data)
-  const gameTotal = (data.games).length
-  // const gameTieTotal = xxx
-  // console.log(gameTieTotal)
+  // console.log(data)
+  const gameTotal = data.games.length
   $('#logged-in-message').text('Games played: ' + gameTotal)
   $('.home').show()
-  $('.change-password').hide()
+  $('#change-password-button').hide()
   $('.stats').hide()
   $('.new-game').hide()
   $('.sign-out').hide()
@@ -53,21 +43,13 @@ const getStatsSuccess = function (data) {
 const getStatsFailure = function (error) {
   console.error(error)
   $('#logged-in-message').text('Unable to retrieve game statistics, please try again.')
-  $('.home').show()
-  $('.change-pwd-functionality').hide()
-  $('.change-pwd-button').hide()
-  $('.stats').hide()
-  $('.new-game').hide()
-  $('.sign-out').hide()
 }
 
 module.exports = {
   createSuccess,
   createFailure,
-  updateEachTurnSuccess,
-  updateEachTurnFailure,
-  updateOverSuccess,
-  updateOverFailure,
+  updateSuccess,
+  updateFailure,
   getStatsSuccess,
   getStatsFailure
 }

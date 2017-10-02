@@ -13,8 +13,6 @@
   <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
 </head>
 
-<!-- <h1>Welcome to the classic game of</h1>
-<h1>TIC TAC TOE</h1> -->
 <div class="jumbotron jumbotron-fluid">
   <div class="container">
     <h1 class="display-3">Tic-Tac-Toe</h1>
@@ -22,12 +20,11 @@
   </div>
 </div>
 
-
 <div id="home-page-message"></div>
 
 <!-- sign up -->
 <div class="sign-up-functionality">
-  <h2 id="sign-up-text">Sign up below</h2>
+  <h2>Sign up below</h2>
   <hr>
   <form id="sign-up">
     <fieldset>
@@ -41,7 +38,7 @@
 
 <!--- sign in -->
 <div class="sign-in-functionality">
-  <h2 id="sign-in-text">Sign in here</h2>
+  <h2>Sign in here</h2>
   <hr>
   <form id="sign-in">
     <fieldset>
@@ -58,12 +55,11 @@
 <div id="logged-in-message"></div>
 
 <!-- password functionality -->
-<div class="password-functionality">
-  <div class="change-password">
+  <div id="change-password-button">
     <input type="submit" name="submit" class="btn-primary btn" value="Change password">
   </div>
-  <div class="unhide-change-password">
-    <h2 id="change-pwd-text">Change Password</h2>
+  <div id="unhide-change-password">
+    <h2>Change Password</h2>
     <form id="change-pwd">
       <fieldset>
         <input name="passwords[old]" type="password" id="old-pwd" placeholder="Enter old password">
@@ -72,7 +68,6 @@
       </fieldset>
     </form>
   </div>
-</div>
 
 <!-- fields that JSON needs when board is updated
       <div class="game-inputs">
@@ -86,7 +81,8 @@
 <!-- tic tac toe board -->
 <div class="display-game-board">
   <table>
-    <tr>
+    <tbody>
+      <tr>
       <td class="cell" id="0"></td>
       <td class="cell" id="1"></td>
       <td class="cell" id="2"></td>
@@ -101,6 +97,7 @@
       <td class="cell" id="7"></td>
       <td class="cell" id="8"></td>
     </tr>
+  </tbody>
   </table>
 </div>
 

@@ -1,138 +1,127 @@
 'use strict'
 
-// const getFormFields = require('../../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
 const authApi = require('../auth/api')
 const authUi = require('../auth/ui')
 
+let grid = new Array(9)
 const player1 = 'X'
 const player2 = 'O'
 let currentPlayer = player1
-let moveCount = 0
-let gameBoard = ['', '', '', '', '', '', '', '', '']
+let moves = 0
 
 const click = function (event) {
-  event.preventDefault()
-  const cell = this.id
-  // console.log('what is this', this)
-  // console.log('cell is:', cell)
-  // increment move count by 1 each time click happens
-  moveCount += 1
   $('#logged-in-message').text('')
-  // console.log('move count is', moveCount)
-  if (moveCount < 10) {
-    // make html display current player's symbol
+  event.preventDefault()
+  const cell = event.target.attributes[1].value
+  console.log(cell)
+  moves += 1
+  // console.log('move count is', moves)
+  if (moves < 10) {
     $('#' + cell).html(currentPlayer)
-    // disable the click for the current player
     $('#' + cell).off('click')
-    // find index of cell that was clicked, convert to integer
-    const cellIndex = parseInt(cell)
-    // console.log(cellIndex)
-    // update the gameBoard array at index that was selected
-    gameBoard[cellIndex] = currentPlayer
-    // console.log(gameBoard)
-    // this will pass to the api and update each move
-    api.updateEachTurn(cellIndex, currentPlayer)
-      .then(ui.updateEachTurnSuccess)
-      .catch(ui.updatEachTurnFailure)
-    if (gameBoard[0] === gameBoard[1] && gameBoard[1] === gameBoard[2]) {
-      if (gameBoard[0] === 'X') {
+    grid[cell] = currentPlayer
+    // console.log(currentPlayer)
+    api.updateTurn(cell, currentPlayer)
+      .then(ui.updateSuccess)
+      .catch(ui.updateFailure)
+    if (grid[0] === grid[1] && grid[0] === grid[2]) {
+      if (grid[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[0] === 'O') {
-        console.log(player1, ' wins!')
-        gameOver(player1)
-      }
-    } else if (gameBoard[3] === gameBoard[4] && gameBoard[4] === gameBoard[5]) {
-      if (gameBoard[3] === 'X') {
-        console.log(player1, ' wins!')
-        gameOver(player1)
-      } else if (gameBoard[3] === 'O') {
+      } else if (grid[0] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[6] === gameBoard[7] && gameBoard[7] === gameBoard[8]) {
-      if (gameBoard[6] === 'X') {
+    } else if (grid[3] === grid[4] && grid[3] === grid[5]) {
+      if (grid[3] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[6] === 'O') {
+      } else if (grid[3] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[0] === gameBoard[3] && gameBoard[3] === gameBoard[6]) {
-      if (gameBoard[0] === 'X') {
+    } else if (grid[6] === grid[7] && grid[6] === grid[8]) {
+      if (grid[6] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[0] === 'O') {
+      } else if (grid[6] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[1] === gameBoard[4] && gameBoard[4] === gameBoard[7]) {
-      if (gameBoard[1] === 'X') {
+    } else if (grid[0] === grid[3] && grid[0] === grid[6]) {
+      if (grid[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[1] === 'O') {
+      } else if (grid[0] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[2] === gameBoard[5] && gameBoard[5] === gameBoard[8]) {
-      if (gameBoard[2] === 'X') {
+    } else if (grid[1] === grid[4] && grid[1] === grid[7]) {
+      if (grid[1] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[2] === 'O') {
+      } else if (grid[1] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[0] === gameBoard[4] && gameBoard[4] === gameBoard[8]) {
-      if (gameBoard[0] === 'X') {
+    } else if (grid[2] === grid[5] && grid[2] === grid[8]) {
+      if (grid[2] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[0] === 'O') {
+      } else if (grid[2] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (gameBoard[2] === gameBoard[4] && gameBoard[4] === gameBoard[6]) {
-      if (gameBoard[2] === 'X') {
+    } else if (grid[0] === grid[4] && grid[0] === grid[8]) {
+      if (grid[0] === 'X') {
         console.log(player1, ' wins!')
         gameOver(player1)
-      } else if (gameBoard[2] === 'O') {
+      } else if (grid[0] === 'O') {
         console.log(player2, ' wins!')
         gameOver(player2)
       }
-    } else if (moveCount >= 9) {
-      console.log('tie!')
-      $('#logged-in-message').text('It\'s a tie!')
+    } else if (grid[2] === grid[4] && grid[2] === grid[6]) {
+      if (grid[2] === 'X') {
+        console.log(player1, ' wins!')
+        gameOver(player1)
+      } else if (grid[2] === 'O') {
+        console.log(player2, ' wins!')
+        gameOver(player2)
+      }
+    } else if (moves >= 9) {
+      // console.log('tie!')
+      $('#logged-in-message').text('It\'s a tie! Click below to try again!')
       $('.cell').off('click')
-      api.updateGameOver()
-        .then(ui.updateOverSuccess)
-        .catch(ui.updateOverFailure)
+      api.updateDone(cell, currentPlayer)
+        .then(ui.updateSuccess)
+        .catch(ui.updateFailure)
     }
   }
-  // switch player turns
+  // switch player turns after each move
   if (currentPlayer === player1) {
     currentPlayer = player2
   } else if (currentPlayer === player2) {
     currentPlayer = player1
   }
-  console.log(currentPlayer)
+  // console.log(currentPlayer)
 }
 
-const gameOver = function (winner) {
+const gameOver = function (player) {
   $('.cell').off('click')
-  console.log('Winner is ', winner)
-  $('#logged-in-message').text('The winner is player ' + winner + '! Click below to start a new game or go back to the home page.')
-  api.updateGameOver()
-    .then(ui.updateOverSuccess)
-    .catch(ui.updateOverFailure)
+  // console.log('Winner is ', player)
+  $('#logged-in-message').text('The winner is player ' + player + '! Click below to start a new game or go back to the home page.')
+  api.updateDone()
+    .then(ui.updateSuccess)
+    .catch(ui.updateFailure)
 }
 
 const newGame = function (event) {
   $('.cell').text('')
-  $('#logged-in-message').text('Click any cell to start playing!')
-  moveCount = 0
+  moves = 0
   currentPlayer = player1
-  gameBoard = ['', '', '', '', '', '', '', '', '']
+  grid = new Array(9)
   $('.cell').off('click')
   $('.cell').on('click', click)
   api.createGame()
@@ -142,17 +131,17 @@ const newGame = function (event) {
 
 const getPlayerStats = function (event) {
   event.preventDefault()
-  console.log('got to stats')
+  // console.log('got to stats')
   api.getStats()
     .then(ui.getStatsSuccess)
     .catch(ui.getStatsFailure)
 }
 
-const goHome = function (event) {
-  console.log('go back to home')
+const onHome = function (event) {
+// console.log('go back to home')
   $('#logged-in-message').text('What would you like to do now?')
-  $('.change-password').show()
-  $('.password-functionality').show()
+  $('#change-password-button').show()
+  $('#unhide-change-password').hide()
   $('.sign-out').show()
   $('.new-game').show()
   $('.stats').show()
@@ -162,17 +151,17 @@ const goHome = function (event) {
 
 const onSignOut = function (event) {
   event.preventDefault()
-  console.log('signed out')
+  // console.log('signed out')
   authApi.signOut()
     .then(authUi.signOutSuccess)
     .catch(authUi.signInFailure)
 }
 
 const addHandlers = function () {
-  $('.cell').on('click', click) // jquery: when a cell is clicked, click function will execute
-  $('.new-game').on('click', newGame) // jquery: when new game button is clicked, newGame function will execute
-  $('.stats').on('click', getPlayerStats) // jquery: when stats button is clicked, getPlayerStats function will execute
-  $('.home').on('click', goHome)
+  $('.cell').on('click', click)
+  $('.new-game').on('click', newGame)
+  $('.stats').on('click', getPlayerStats)
+  $('.home').on('click', onHome)
   $('.sign-out').on('click', onSignOut)
 }
 
