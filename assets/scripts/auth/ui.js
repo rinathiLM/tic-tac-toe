@@ -8,8 +8,8 @@ const signUpSuccess = function (data) {
   $('.sign-in-functionality').show()
 }
 
-const signUpFailure = function (error) {
-  console.error(error)
+const signUpFailure = function () {
+//   console.error(error)
   $('#home-page-message').text('There was an error signing up, please try again.')
   $('#sign-up-name').val('')
   $('#sign-up-pwd').val('')
@@ -31,8 +31,8 @@ const signInSuccess = function (data) {
   $('.sign-out').show()
 }
 
-const signInFailure = function (error) {
-  console.error(error)
+const signInFailure = function () {
+  // console.error(error)
   $('#home-page-message').text('There was an error signing in, please try again.')
   $('#sign-in-name').val('')
   $('#sign-in-pwd').val('')
@@ -48,8 +48,8 @@ const changePasswordSuccess = function () {
   $('.stats').show()
 }
 
-const changePasswordFailure = function (error) {
-  console.error(error)
+const changePasswordFailure = function () {
+  // console.error(error)
   $('#logged-in-message').text('There was an error, please try updating your password again.')
 }
 
@@ -73,8 +73,8 @@ const signOutSuccess = function () {
   $('#sign-up-pwd-2').val('')
 }
 
-const signOutFailure = function (error) {
-  console.error(error)
+const signOutFailure = function () {
+//  console.error(error)
   $('#logged-in-message').text('Something is wrong, please try signing out again.')
 }
 

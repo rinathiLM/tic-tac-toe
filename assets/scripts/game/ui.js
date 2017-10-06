@@ -15,8 +15,8 @@ const createSuccess = function (gameObject) {
   $('.new-game').show()
 }
 
-const createFailure = function (error) {
-  console.error(error)
+const createFailure = function () {
+//  console.error(error)
   $('#logged-in-message').text('There was an error creating a new game, please try again.')
 }
 
@@ -25,8 +25,8 @@ const updateSuccess = function (data) {
   // console.log(game.game)
 }
 
-const updateFailure = function (error) {
-  console.error(error)
+const updateFailure = function () {
+//  console.error(error)
 }
 
 const getStatsSuccess = function (data) {
@@ -40,8 +40,8 @@ const getStatsSuccess = function (data) {
   $('.sign-out').hide()
 }
 
-const getStatsFailure = function (error) {
-  console.error(error)
+const getStatsFailure = function () {
+  // console.error(error)
   $('#logged-in-message').text('Unable to retrieve game statistics, please try again.')
 }
 
