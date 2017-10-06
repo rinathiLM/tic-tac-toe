@@ -15,7 +15,7 @@ const click = function (event) {
   $('#logged-in-message').text('')
   event.preventDefault()
   const cell = event.target.attributes[1].value
-  console.log(cell)
+  // console.log(cell)
   moves += 1
   // console.log('move count is', moves)
   if (moves < 10) {
@@ -28,66 +28,50 @@ const click = function (event) {
       .catch(ui.updateFailure)
     if (grid[0] === grid[1] && grid[0] === grid[2]) {
       if (grid[0] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[0] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[3] === grid[4] && grid[3] === grid[5]) {
       if (grid[3] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[3] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[6] === grid[7] && grid[6] === grid[8]) {
       if (grid[6] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[6] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[0] === grid[3] && grid[0] === grid[6]) {
       if (grid[0] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[0] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[1] === grid[4] && grid[1] === grid[7]) {
       if (grid[1] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[1] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[2] === grid[5] && grid[2] === grid[8]) {
       if (grid[2] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[2] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[0] === grid[4] && grid[0] === grid[8]) {
       if (grid[0] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[0] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (grid[2] === grid[4] && grid[2] === grid[6]) {
       if (grid[2] === 'X') {
-        console.log(player1, ' wins!')
         gameOver(player1)
       } else if (grid[2] === 'O') {
-        console.log(player2, ' wins!')
         gameOver(player2)
       }
     } else if (moves >= 9) {

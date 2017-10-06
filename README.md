@@ -1,7 +1,7 @@
-## Game Info
+## URL to Game
+https://rinathilm.github.io/tic-tac-toe/
 
-URL to game - https://rinathilm.github.io/tic-tac-toe/
-
+## Project Description
 Tic-tac-toe is a simple game where two players, usually designated with X and O, take turns on a 3x3 grid to place three of their marks in a row. This can be done horizontally, vertically, or diagonally (or as I like to say 'diagon-ally'). The player who does this first wins the game.
 
 This game was made during my fall 2017 Web Development Immersive program through General Assembly in Boston. It was our first indiviual project.
