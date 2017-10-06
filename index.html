@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tic Tac Toe</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Do not add `link` tags-->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+
+  <!-- Do not add `script` tags-->
+  <script src="public/vendor.js" type="text/javascript" charset="utf-8" defer></script>
+  <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
+</head>
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-3">Tic-Tac-Toe</h1>
+    <h2 class="lead">The classic game everyone loves!</h2>
+  </div>
+</div>
+
+<div id="home-page-message"></div>
+
+<!-- sign up -->
+<div class="sign-up-functionality">
+  <h2>Sign up below</h2>
+  <hr>
+  <form id="sign-up">
+    <fieldset>
+      <input name="credentials[email]" id="sign-up-name" type="text" placeholder="Enter email">
+      <input name="credentials[password]" id="sign-up-pwd" type="password" placeholder="Enter password">
+      <input name="credentials[password_confirmation]" id="sign-up-pwd-2" type="password" placeholder="Confirm password">
+      <input type="submit" name="submit" class="btn-primary btn" value="Sign up">
+    </fieldset>
+  </form>
+</div>
+
+<!--- sign in -->
+<div class="sign-in-functionality">
+  <h2>Sign in here</h2>
+  <hr>
+  <form id="sign-in">
+    <fieldset>
+      <input name="credentials[email]" id="sign-in-name" type="text" placeholder="Enter email">
+      <input name="credentials[password]" id="sign-in-pwd" type="password" placeholder="Enter password">
+      <input type="submit" name="submit" class="btn-primary btn" value="Sign in">
+    </fieldset>
+  </form>
+</div>
+
+<!-- these fields needs to be hidden until I'm signed in -->
+
+<!--- game message -->
+<div id="logged-in-message"></div>
+
+<!-- password functionality -->
+  <div id="change-password-button">
+    <input type="submit" name="submit" class="btn-primary btn" value="Change password">
+  </div>
+  <div id="unhide-change-password">
+    <h2>Change Password</h2>
+    <form id="change-pwd">
+      <fieldset>
+        <input name="passwords[old]" type="password" id="old-pwd" placeholder="Enter old password">
+        <input name="passwords[new]" type="password" id="new-pwd" placeholder="Enter new password">
+        <input type="submit" name="submit" class="btn-primary btn" id="confirm" value="Confirm password change">
+      </fieldset>
+    </form>
+  </div>
+
+<!-- fields that JSON needs when board is updated
+      <div class="game-inputs">
+        <form>
+          <input name="game[cell][index]" type="text" value="O">
+          <input name="game[cell][value]" type="text" value="X">
+          <input name="game[over]" type="text" value="false">
+        </form>
+      </div> -->
+
+<!-- tic tac toe board -->
+<div class="display-game-board">
+  <table>
+    <tbody>
+      <tr>
+      <td class="cell" id="0"></td>
+      <td class="cell" id="1"></td>
+      <td class="cell" id="2"></td>
+    </tr>
+    <tr>
+      <td class="cell" id="3"></td>
+      <td class="cell" id="4"></td>
+      <td class="cell" id="5"></td>
+    </tr>
+    <tr>
+      <td class="cell" id="6"></td>
+      <td class="cell" id="7"></td>
+      <td class="cell" id="8"></td>
+    </tr>
+  </tbody>
+  </table>
+</div>
+
+<!-- button to restart game, with function that clears the board -->
+<div class="new-game">
+  <input type="submit" name="submit" class="btn-primary btn" value='Start a new game'>
+</div>
+
+<!-- stats -->
+<div class="stats">
+  <input type="submit" name="submit" class="btn-primary btn" value='Get my statistics'>
+</div>
+
+<!-- home page button -->
+<div class="home">
+  <input type="submit" name="submit" class="btn-primary btn" value='Home'>
+</div>
+
+<!-- sign out -->
+<div class="sign-out">
+  <input type="submit" name="submit" class="btn-primary btn" value='Sign out'>
+</div>
+
+</body>
+
+</html>
